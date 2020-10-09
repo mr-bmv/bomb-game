@@ -1,0 +1,12 @@
+.content {
+  width: 380px;
+  height: 380px;
+  margin: 250px auto;
+}
+
+.cell {
+  float: left;
+  height: 96px;
+  width: 96px;
+  border: 1px solid black;
+}
