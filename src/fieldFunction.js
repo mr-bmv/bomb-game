@@ -50,7 +50,7 @@ export default getField;
 
 // result of this getField for 10 rows
 // {
-//     row1: [
+//     1: [
 //       { id: 1, bomb: false, status: 0, value: null },
 //       { id: 2, bomb: false, status: 0, value: null },
 //       { id: 3, bomb: false, status: 0, value: null },
@@ -62,7 +62,7 @@ export default getField;
 //       { id: 9, bomb: false, status: 0, value: null },
 //       { id: 10, bomb: false, status: 0, value: null }
 //     ],
-//     row2: [
+//     2: [
 //       { id: 11, bomb: false, status: 0, value: null },
 //       { id: 12, bomb: false, status: 0, value: null },
 //       { id: 13, bomb: false, status: 0, value: null },
@@ -74,7 +74,7 @@ export default getField;
 //       { id: 19, bomb: false, status: 0, value: null },
 //       { id: 20, bomb: false, status: 0, value: null }
 //     ],
-//     row3: [
+//     3: [
 //       { id: 21, bomb: false, status: 0, value: null },
 //       { id: 22, bomb: false, status: 0, value: null },
 //       { id: 23, bomb: false, status: 0, value: null },

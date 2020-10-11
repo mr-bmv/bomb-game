@@ -12,38 +12,53 @@ function App() {
     return getCanvas()
   })
 
-  console.log(field)
-
-  // const getNumber = (row, column) => {
-  //   console.log("->", field[row][column])
-  // }
-
-  // getNumber('row3', 3)
   const onHandler = (row, column) => {
-    console.log(row, column)
 
-    setField({ ...field,
-    [] })
+    const before = field[row].slice(0, column);
+    const my = {
+      ...field[row][column],
+      status: (field[row][column].status + 1)
+    }
+
+    const after = field[row].slice(column + 1)
+
+    setField({
+      ...field,
+      [row]: [...before, my, ...after]
+    })
   }
 
   const cells = Object.keys(field)
     .map((row) =>
       field[row].map((cell, index) => {
+        let className = "cell"
+        if (cell.status === 1) {
+          className = 'cell marked'
+        }
+        if (cell.status === 2) {
+          className = 'cell bomb'
+        }
+
         return (
           <div
             key={cell.id}
-            className="cell"
+            className={className}
             onClick={() => onHandler(row, index)}
           >
             {cell.value}
           </div>)
-      }
-      )
+      })
     )
+  const onHandlerButton = (event) => {
+
+  }
 
   return (
     <div className="container">
       {cells}
+      <button
+        className="button"
+        onClick={() => onHandlerButton()}>Check</button>
     </div>
   );
 }

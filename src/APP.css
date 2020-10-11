@@ -2,3 +2,11 @@
   display: grid;
   grid-template-columns: repeat(10, 1fr);
 }
+
+.cell.marked {
+  background-color: rgb(108, 255, 71);
+}
+
+.cell.bomb {
+  background-color: tomato;
+}
