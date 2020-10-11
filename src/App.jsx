@@ -17,7 +17,8 @@ function App() {
     const before = field[row].slice(0, column);
     const my = {
       ...field[row][column],
-      status: (field[row][column].status + 1)
+      // circle from 0 till 2
+      status: (field[row][column].status === 2 ? 0 : field[row][column].status + 1)
     }
 
     const after = field[row].slice(column + 1)
@@ -46,10 +47,15 @@ function App() {
             onClick={() => onHandler(row, index)}
           >
             {cell.value}
+            {/* 💣 */}
           </div>)
       })
     )
-  const onHandlerButton = (event) => {
+
+  const onHandlerButton = () => {
+    const bomb = "💣";
+
+
 
   }
 
