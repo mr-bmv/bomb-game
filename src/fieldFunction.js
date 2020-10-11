@@ -1,9 +1,23 @@
-let id = 1;
+import getBombArray from "./bombFunctions";
+const BOMB_QTY = 20
 
+let id = 1;
+const bombArray = getBombArray(BOMB_QTY);
+console.log(bombArray)
+
+// @status - 
+//          0 - did not touch by user (default)
+//          1 - left Click (green) - no bomb
+//          2 - right Click (red) - bomb
+// @value - how many bomb around 
 const getCellObject = () => {
+    let bomb = false;
+    if (bombArray.indexOf(id) > -1) {
+        bomb = true;
+    }
     const obj = {
-        "id": id,
-        "bomb": false,
+        id,
+        bomb,
         "status": 0,
         "value": null
     }
@@ -15,8 +29,8 @@ const getRowObject = (number) => {
     const name = [];
     let index = 1
     while (index <= number) {
-        name.push(getCellObject())
-        index++
+        name.push(getCellObject());
+        index++;
     }
 
     return name;

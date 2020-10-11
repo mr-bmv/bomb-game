@@ -1,18 +1,21 @@
 //  array with location of bomb
 //  @qty - how many bombs on the field
-const randomArray = [];
+const bombArray = [];
 
-const getRandomArray = (qty) => {
-    while (randomArray.length < qty) {
+const getBombArray = (qty) => {
+    while (bombArray.length < qty) {
         const number = Math.floor(Math.random() * 100)
-        if (randomArray.indexOf(number) === -1) {
-            randomArray.push(number)
+        if (bombArray.indexOf(number) === -1) {
+            bombArray.push(number)
         }
     }
-    return randomArray;
+    return bombArray;
 }
 
-console.log(getRandomArray(10))
+export default getBombArray;
+
+
+// console.log(getBombArray(10))
 
 // Result 
 // [
