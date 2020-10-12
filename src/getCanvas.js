@@ -5,12 +5,13 @@ const arr = [];
 
 const getBombArray = (qty) => {
     while (arr.length < qty) {
-        const number = Math.floor(Math.random() * 100)
+        const number = Math.floor(Math.random() * FIELD_SIZE * FIELD_SIZE)
         if (arr.indexOf(number) === -1) {
             arr.push(number)
         }
     }
     return arr;
+    // [2,55,45,33]
 }
 
 let id = 1;
@@ -19,7 +20,7 @@ const bombArray = getBombArray(BOMB_QTY);
 // @status - 
 //          0 - did not touch by user (default)
 //          1 - left Click (green) - no bomb
-//          2 - right Click (red) - bomb
+//          2 - double Click (red) - bomb
 // @value - how many bomb around 
 const getSkeletonObject = () => {
     let bomb = false;
@@ -68,39 +69,39 @@ const getNumber = (number, column) => {
     let qty = 0
     // const x = field[`row${number}`][column]
     // check that it is not upper row
-    if (number != 1) {
+    if (number !== 1) {
         // check that it is not left column
-        if (column != 0) {
+        if (column !== 0) {
             const upLeft = field[number - 1][column - 1].bomb
             if (!upLeft) { qty++ }
         }
         const up = field[number - 1][column].bomb
         if (!up) { qty++ }
         // check that it is not Right column
-        if (column != (field[number].length - 1)) {
+        if (column !== (field[number].length - 1)) {
             const upRight = field[number - 1][column + 1].bomb
             if (!upRight) { qty++ }
         }
     }
 
-    if (column != 0) {
+    if (column !== 0) {
         const left = field[number][column - 1].bomb
         if (!left) { qty++ }
     }
 
-    if (column != (field[number].length - 1)) {
+    if (column !== (field[number].length - 1)) {
         const right = field[number][column + 1].bomb
         if (!right) { qty++ }
     }
 
-    if (number != Object.keys(field).length) {
-        if (column != 0) {
+    if (number !== Object.keys(field).length) {
+        if (column !== 0) {
             const downLeft = field[number + 1][column - 1].bomb
             if (!downLeft) { qty++ }
         }
         const down = field[number + 1][column].bomb
         if (!down) { qty++ }
-        if (column != (field[number].length - 1)) {
+        if (column !== (field[number].length - 1)) {
             const downRight = field[number + 1][column + 1].bomb
             if (!downRight) { qty++ }
         }
