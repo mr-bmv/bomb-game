@@ -5,13 +5,15 @@ const arr = [];
 
 const getBombArray = (qty) => {
     while (arr.length < qty) {
-        const number = Math.floor(Math.random() * FIELD_SIZE * FIELD_SIZE)
+        const number = Math.floor(Math.random() * FIELD_SIZE * FIELD_SIZE) + 1
         if (arr.indexOf(number) === -1) {
             arr.push(number)
         }
     }
+    console.log(arr.length)
+    console.log(arr)
     return arr;
-    // [2,55,45,33]
+
 }
 
 let id = 1;
