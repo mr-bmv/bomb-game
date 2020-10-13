@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
 const Timer = () => {
-    console.log('From Timer')
     const [seconds, setSeconds] = useState(0)
 
     const tick = () => {
@@ -12,9 +11,10 @@ const Timer = () => {
         const interval = setInterval(() => tick(), 1000);
         return () => clearInterval(interval);
     }, [])
-
+    const min = Math.floor(seconds / 60)
+    const sec = seconds % 60
     return (
-        <div>{`Время: ${seconds}`}</div>
+        <div>{`Время ${min > 9 ? '' : 0}${min} : ${sec > 9 ? '' : 0}${sec}`}</div>
     )
 }
 
