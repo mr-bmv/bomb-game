@@ -1,16 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useState } from 'react';
 import getCanvas from './getCanvas';
 
 import "./APP.css"
 
-// const FIELD_SIZE = 10
-
 function App() {
+  const BOMB_QTY = 40
+  const FIELD_SIZE = 10
 
-  const [field, setField] = useState(() => {
-    return { canvas: getCanvas(), finishedGame: false, score: 0 }
-  })
+  const state = useMemo(() => {
+    return { canvas: getCanvas(BOMB_QTY, FIELD_SIZE), finishedGame: false, score: 0 }
+  }, [BOMB_QTY, FIELD_SIZE])
+
+  const [field, setField] = useState(() => state)
 
   const onCell = (row, column) => {
     if (!field.finishedGame && (field.score !== 40)) {
@@ -20,13 +22,16 @@ function App() {
         // circle from 0 till 2
         status: (field.canvas[row][column].status === 2 ? 0 : field.canvas[row][column].status + 1)
       }
+      const after = field.canvas[row].slice(column + 1)
 
       let newScore = field.score;
       if (my.status === 2) {
         newScore = field.canvas[row][column].bomb ? (field.score + 1) : field.score
       }
+      if (my.status === 0) {
+        newScore = field.canvas[row][column].bomb ? (field.score - 1) : field.score
+      }
 
-      const after = field.canvas[row].slice(column + 1)
       const { canvas } = field;
       const updateCanvas = {
         ...canvas,
@@ -79,22 +84,47 @@ function App() {
 
   const result = () => {
     if (field.score === 40) {
-      const congratulation = 'Круто!!! 40 из 40'
+      const congratulation = 'Поздравляю !!!'
       return <h2>{congratulation}</h2>;
     }
     return field.finishedGame ? <h2>{field.score}</h2> : null;
   }
 
+  const onClean = () => {
+    const { canvas, finishedGame, score } = state;
+    setField({ canvas, finishedGame, score })
+  }
+
+  const onNew = () => {
+    const canvas = getCanvas(BOMB_QTY, FIELD_SIZE);
+
+    setField({
+      canvas, finishedGame: false, score: 0
+    })
+  }
+
   return (
-    <div className="container">
+    <div className="container"
+      style={{ gridTemplateColumns: `repeat(${FIELD_SIZE}, 1fr)` }}
+    >
       {cells}
       <div
         className="button"
-        onClick={() => onHandlerButton()}
+        onClick={onHandlerButton}
       >
-        Check
+        Проверить
       </div>
       { result()}
+      <div className="clean"
+        onClick={onClean}
+      >
+        Начать заново
+      </div>
+      <div className="clean"
+        onClick={onNew}
+      >
+        Новая игра
+      </div>
     </div>
   );
 }

@@ -1,118 +1,116 @@
-const BOMB_QTY = 40
-const FIELD_SIZE = 10
+const getCanvas = (bombQTY, fieldSize) => {
+    const arr = [];
 
-const arr = [];
-
-const getBombArray = (qty) => {
-    while (arr.length < qty) {
-        const number = Math.floor(Math.random() * FIELD_SIZE * FIELD_SIZE) + 1
-        if (arr.indexOf(number) === -1) {
-            arr.push(number)
+    const getBombArray = (qty) => {
+        console.log(qty)
+        while (arr.length < qty) {
+            const number = Math.floor(Math.random() * fieldSize * fieldSize) + 1
+            if (arr.indexOf(number) === -1) {
+                arr.push(number)
+            }
         }
-    }
-    console.log(arr.length)
-    console.log(arr)
-    return arr;
+        console.log(arr.length)
+        console.log(arr)
+        return arr;
 
-}
-
-let id = 1;
-const bombArray = getBombArray(BOMB_QTY);
-
-// @status - 
-//          0 - did not touch by user (default)
-//          1 - left Click (green) - no bomb
-//          2 - double Click (red) - bomb
-// @value - how many bomb around 
-const getSkeletonObject = () => {
-    let bomb = false;
-    if (bombArray.indexOf(id) > -1) {
-        bomb = true;
-    }
-    const obj = {
-        id,
-        bomb,
-        status: 0
-    }
-    id += 1
-    return obj
-};
-
-const getRowObject = (number) => {
-    const name = [];
-    let index = 1
-    while (index <= number) {
-        name.push(getSkeletonObject());
-        index++;
     }
 
-    return name;
-}
+    let id = 1;
+    const bombArray = getBombArray(bombQTY);
 
-const getSkeletonField = (number) => {
-    const field = {};
-    for (let index = 1; index <= number; index++) {
-        field[index] = getRowObject(number)
+    // @status - 
+    //          0 - did not touch by user (default)
+    //          1 - left Click (green) - no bomb
+    //          2 - double Click (red) - bomb
+    // @value - how many bomb around 
+    const getSkeletonObject = () => {
+        let bomb = false;
+        if (bombArray.indexOf(id) > -1) {
+            bomb = true;
+        }
+        const obj = {
+            id,
+            bomb,
+            status: 0
+        }
+        id += 1
+        return obj
+    };
+
+    const getRowObject = (number) => {
+        const name = [];
+        let index = 1
+        while (index <= number) {
+            name.push(getSkeletonObject());
+            index++;
+        }
+
+        return name;
     }
-    return field;
-}
 
-const field = getSkeletonField(FIELD_SIZE)
+    const getSkeletonField = (number) => {
+        const field = {};
+        for (let index = 1; index <= number; index++) {
+            field[index] = getRowObject(number)
+        }
+        return field;
+    }
 
-const getNumber = (number, column) => {
+    const field = getSkeletonField(fieldSize)
 
-    number = +number;
-    column = +column;
-    // because array starts from `0`
+    const getNumber = (number, column) => {
 
-    // column--;
-    // console.log(`row${number - 1}`)
+        number = +number;
+        column = +column;
+        // because array starts from `0`
 
-    let qty = 0
-    // const x = field[`row${number}`][column]
-    // check that it is not upper row
-    if (number !== 1) {
-        // check that it is not left column
+        // column--;
+        // console.log(`row${number - 1}`)
+
+        let qty = 0
+        // const x = field[`row${number}`][column]
+        // check that it is not upper row
+        if (number !== 1) {
+            // check that it is not left column
+            if (column !== 0) {
+                const upLeft = field[number - 1][column - 1].bomb
+                if (!upLeft) { qty++ }
+            }
+            const up = field[number - 1][column].bomb
+            if (!up) { qty++ }
+            // check that it is not Right column
+            if (column !== (field[number].length - 1)) {
+                const upRight = field[number - 1][column + 1].bomb
+                if (!upRight) { qty++ }
+            }
+        }
+
         if (column !== 0) {
-            const upLeft = field[number - 1][column - 1].bomb
-            if (!upLeft) { qty++ }
+            const left = field[number][column - 1].bomb
+            if (!left) { qty++ }
         }
-        const up = field[number - 1][column].bomb
-        if (!up) { qty++ }
-        // check that it is not Right column
+
         if (column !== (field[number].length - 1)) {
-            const upRight = field[number - 1][column + 1].bomb
-            if (!upRight) { qty++ }
+            const right = field[number][column + 1].bomb
+            if (!right) { qty++ }
         }
-    }
 
-    if (column !== 0) {
-        const left = field[number][column - 1].bomb
-        if (!left) { qty++ }
-    }
-
-    if (column !== (field[number].length - 1)) {
-        const right = field[number][column + 1].bomb
-        if (!right) { qty++ }
-    }
-
-    if (number !== Object.keys(field).length) {
-        if (column !== 0) {
-            const downLeft = field[number + 1][column - 1].bomb
-            if (!downLeft) { qty++ }
+        if (number !== Object.keys(field).length) {
+            if (column !== 0) {
+                const downLeft = field[number + 1][column - 1].bomb
+                if (!downLeft) { qty++ }
+            }
+            const down = field[number + 1][column].bomb
+            if (!down) { qty++ }
+            if (column !== (field[number].length - 1)) {
+                const downRight = field[number + 1][column + 1].bomb
+                if (!downRight) { qty++ }
+            }
         }
-        const down = field[number + 1][column].bomb
-        if (!down) { qty++ }
-        if (column !== (field[number].length - 1)) {
-            const downRight = field[number + 1][column + 1].bomb
-            if (!downRight) { qty++ }
-        }
+
+        return qty;
     }
 
-    return qty;
-}
-
-const getCanvas = () => {
     Object.keys(field)
         .map((row) => {
             return field[row].map(
