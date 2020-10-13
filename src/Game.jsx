@@ -2,9 +2,10 @@ import React, { useEffect, useMemo } from 'react';
 import { useState } from 'react';
 import getCanvas from './getCanvas';
 
-import "./APP.css"
+import "./Game.css"
+import Timer from './Timer';
 
-function App() {
+function Game() {
   const BOMB_QTY = 40
   const FIELD_SIZE = 10
 
@@ -69,7 +70,6 @@ function App() {
     )
 
   useEffect(() => {
-    console.log('Effect')
   }, [field])
 
   const onHandlerButton = () => {
@@ -97,36 +97,39 @@ function App() {
 
   const onNew = () => {
     const canvas = getCanvas(BOMB_QTY, FIELD_SIZE);
-
     setField({
       canvas, finishedGame: false, score: 0
     })
   }
 
   return (
-    <div className="container"
-      style={{ gridTemplateColumns: `repeat(${FIELD_SIZE}, 1fr)` }}
-    >
-      {cells}
-      <div
-        className="button"
-        onClick={onHandlerButton}
+    <div>
+      <div className="container"
+        style={{ gridTemplateColumns: `repeat(${FIELD_SIZE}, 1fr)` }}
       >
-        Проверить
+        {cells}
+        <div
+          className="button"
+          onClick={onHandlerButton}
+        >
+          Проверить
       </div>
-      { result()}
-      <div className="clean"
-        onClick={onClean}
-      >
-        Начать заново
+        {result()}
+        <div className="clean"
+          onClick={onClean}
+        >
+          Начать заново
       </div>
-      <div className="clean"
-        onClick={onNew}
-      >
-        Новая игра
+        <div className="clean"
+          onClick={onNew}
+        >
+          Новая игра
       </div>
+
+      </div>
+      <div className="timer"> <Timer /></div>
     </div>
   );
 }
 
-export default App;
+export default Game;
