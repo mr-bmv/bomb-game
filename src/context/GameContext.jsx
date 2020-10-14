@@ -21,7 +21,7 @@ export const GameProvider = ({ children }) => {
     return {
       canvas: getCanvas(BOMB_QTY, FIELD_SIZE),
       finishedGame: false,
-      score: 0
+      score: 0,
     }
   })
 
@@ -80,8 +80,8 @@ export const GameProvider = ({ children }) => {
 
   return (
     <GameContext.Provider value={{
-      field,FIELD_SIZE,BOMB_QTY,
-      onCell, onHandlerButton, 
+      field, FIELD_SIZE, BOMB_QTY,
+      onCell, onHandlerButton,
       // onClean, 
       onNew
 

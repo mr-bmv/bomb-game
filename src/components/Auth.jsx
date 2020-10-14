@@ -1,24 +1,26 @@
 import React from 'react'
 import { useState } from 'react'
+import { useUserContext } from '../context/UserContext'
 import './Auth.css'
 
 const Auth = () => {
 
-    const [auth, setAuth] = useState({ login: '' })
+    const { setLogin } = useUserContext()
+    const [auth, setAuth] = useState('')
 
     const onSubmit = (event) => {
         event.preventDefault();
-        console.log('----> ', auth)
+        setLogin(auth)
     }
 
-    const onChange = (word) => {
-        setAuth({ login: word.target.value })
+    const onChange = (login) => {
+        setAuth({ user: login.target.value })
     }
 
     return (
         <form onSubmit={onSubmit}>
             <div className="text">Введите ник</div>&nbsp;
-            <input type="text" onChange={(word) => onChange(word)} />
+            <input type="text" onChange={(login) => onChange(login)} />
         </form>
     )
 }
