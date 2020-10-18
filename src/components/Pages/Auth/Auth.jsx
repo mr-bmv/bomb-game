@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { useUserContext } from '../context/UserContext'
+import { useUserContext } from '../../../context/UserContext';
 import './Auth.css'
 
 const Auth = () => {

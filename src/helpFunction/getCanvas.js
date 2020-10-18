@@ -1,16 +1,25 @@
+/**
+ * Main function that created object with data for each cell.
+ * In each cell would be object with information about:
+ * id - id of this cell;
+ * bomb - is bomb in this cell;
+ * status - was this cell pushed;
+ * value - how many free field(w/o bombs) around;
+ * @param {number} bombQTY  - how many bombs would be into field
+ * @param {number} fieldSize - how many cells would be in vertical nad horizontal
+ * 
+ * Return Object
+ */
 const getCanvas = (bombQTY, fieldSize) => {
     const arr = [];
 
     const getBombArray = (qty) => {
-        console.log(qty)
         while (arr.length < qty) {
             const number = Math.floor(Math.random() * fieldSize * fieldSize) + 1
             if (arr.indexOf(number) === -1) {
                 arr.push(number)
             }
         }
-        console.log(arr.length)
-        console.log(arr)
         return arr;
 
     }
@@ -58,17 +67,19 @@ const getCanvas = (bombQTY, fieldSize) => {
 
     const field = getSkeletonField(fieldSize)
 
+    /**
+     * Get a value for each cell in field skeleton. This value means how many 
+     * free field (w/o bomb) are located around
+     * @param {number} number  - like "x" coordinate
+     * @param {number} column - like "y" coordinate
+     */
     const getNumber = (number, column) => {
 
         number = +number;
         column = +column;
+
         // because array starts from `0`
-
-        // column--;
-        // console.log(`row${number - 1}`)
-
         let qty = 0
-        // const x = field[`row${number}`][column]
         // check that it is not upper row
         if (number !== 1) {
             // check that it is not left column
@@ -119,11 +130,5 @@ const getCanvas = (bombQTY, fieldSize) => {
         })
     return field;
 }
-
-// console.log(field)
-// console.log(getNumber(1, 0))
-// console.log(getNumber(10, 9))
-// console.log(getNumber(5, 5))
-// console.log("Canvas - ", getCanvas())
 
 export default getCanvas;

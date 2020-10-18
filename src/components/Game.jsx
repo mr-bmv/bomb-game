@@ -15,6 +15,7 @@ const Game = () => {
     if (field.score === field.bomb) {
       finishGame()
     }
+    // eslint-disable-next-line
   }, [field.score])
 
   const cells = Object.keys(field.canvas)

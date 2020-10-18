@@ -1,5 +1,5 @@
 import React from 'react'
-import { useUserContext } from '../context/UserContext';
+import { useUserContext } from '../../context/UserContext';
 
 const Rules = () => {
     const { user} = useUserContext();

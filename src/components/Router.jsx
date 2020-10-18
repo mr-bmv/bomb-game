@@ -4,15 +4,14 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 // Context
 import GameProvider from '../context/GameContext';
 import UserProvider from '../context/UserContext';
-import About from './About';
+import About from './Pages/About';
 
 // Components
-import Auth from './Auth';
-import Game from './Game';
 import Navbar from './Navbar';
-import NewGame from './NewGame';
-import NotFound from './NotFound';
-import Rules from './Rules';
+import NewGame from './Pages/NewGame';
+import Rules from './Pages/Rules';
+import NotFound from './Pages/NotFound';
+import Auth from './Pages/Auth/Auth';
 
 
 const Router = () => (
@@ -25,7 +24,6 @@ const Router = () => (
                     <Route path='/new_game' component={NewGame} />
                     <Route path='/about' component={About} />
                     <Route path='/login' component={Auth} />
-                    {/* <Route path='/game' component={Game} /> */}
                     <Route component={NotFound} />
                 </Switch>
             </BrowserRouter>

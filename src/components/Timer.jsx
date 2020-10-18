@@ -13,6 +13,7 @@ const Timer = () => {
 
     useEffect(() => {
         getTime(seconds)
+        // eslint-disable-next-line
     }, [seconds])
 
     useEffect(() => {

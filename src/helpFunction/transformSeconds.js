@@ -1,6 +1,8 @@
 /**
  *  create `00:00` view from number of seconds
  * @param {number} seconds 
+ * 
+ * return string
  */
 const transformSeconds = (seconds) => {
     const min = Math.floor(seconds / 60)
