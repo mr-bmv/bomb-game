@@ -5,8 +5,8 @@ import './Auth.css'
 
 const Auth = () => {
 
-  const { user, setLogin, onExit } = useUserContext()
-  const [auth, setAuth] = useState('')
+  const { user, setLogin, onExit } = useUserContext();
+  const [auth, setAuth] = useState('');
 
   const goToGame = (event) => {
     event.preventDefault();

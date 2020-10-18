@@ -25,7 +25,7 @@ const Router = () => (
                     <Route path='/new_game' component={NewGame} />
                     <Route path='/about' component={About} />
                     <Route path='/login' component={Auth} />
-                    <Route path='/game/:level' component={Game} />
+                    {/* <Route path='/game' component={Game} /> */}
                     <Route component={NotFound} />
                 </Switch>
             </BrowserRouter>
