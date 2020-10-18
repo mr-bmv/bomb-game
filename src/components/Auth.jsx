@@ -5,23 +5,37 @@ import './Auth.css'
 
 const Auth = () => {
 
-    const { setLogin } = useUserContext()
-    const [auth, setAuth] = useState('')
+  const { user, setLogin, onExit } = useUserContext()
+  const [auth, setAuth] = useState('')
 
-    const onSubmit = (event) => {
-        event.preventDefault();
-        setLogin(auth)
-    }
+  const goToGame = (event) => {
+    event.preventDefault();
+    setLogin(auth)
+  }
 
-    const onChange = (login) => {
-        setAuth({ user: login.target.value })
-    }
+  const onChange = (login) => {
+    setAuth(login.target.value)
+  }
 
-    return (
-        <form onSubmit={onSubmit}>
-            <div className="text">Введите ник</div>&nbsp;
-            <input type="text" onChange={(login) => onChange(login)} />
-        </form>
+  const content = user.login
+    ?
+    (<div>
+      <div>{`Вы вошли как ${user.login}`}</div>
+      <div
+        className="button"
+        onClick={onExit}>Выйти</div>
+    </div>
     )
+    :
+    (<form onSubmit={goToGame}>
+      <div className="text">Введите ник</div>&nbsp;
+      <input type="text" onChange={(login) => onChange(login)} />
+    </form>
+    );
+
+  return (
+    <div>{content}</div>
+
+  )
 }
 export default Auth;

@@ -1,20 +1,28 @@
 import React, { useState, useEffect } from 'react'
+import { useGameContext } from '../context/GameContext';
+import transformSeconds from '../helpFunction/transformSeconds';
 
 const Timer = () => {
     const [seconds, setSeconds] = useState(0)
+
+    const { getTime } = useGameContext();
 
     const tick = () => {
         setSeconds((seconds) => seconds + 1)
     }
 
     useEffect(() => {
+        getTime(seconds)
+    }, [seconds])
+
+    useEffect(() => {
         const interval = setInterval(() => tick(), 1000);
         return () => clearInterval(interval);
-    }, [])
-    const min = Math.floor(seconds / 60)
-    const sec = seconds % 60
+    }, []);
+
+
     return (
-        <div>{`Время ${min > 9 ? '' : 0}${min} : ${sec > 9 ? '' : 0}${sec}`}</div>
+        <div>{`Время ${transformSeconds(seconds)}`}</div>
     )
 }
 

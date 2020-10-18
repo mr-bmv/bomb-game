@@ -1,12 +1,21 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useGameContext } from '../context/GameContext';
+import transformSeconds from '../helpFunction/transformSeconds';
 
 import "./Game.css"
 import Timer from './Timer';
 
 const Game = () => {
 
-  const { field, FIELD_SIZE, BOMB_QTY, onCell, onHandlerButton, onNew } = useGameContext();
+  const { field, onCell, onCheckButton, onCleanButton, finishGame } = useGameContext();
+
+  // watching for all bombs would be found and game could be finished
+  useEffect(() => {
+    if (field.score === field.bomb) {
+      finishGame()
+    }
+  }, [field.score])
 
   const cells = Object.keys(field.canvas)
     .map((row) =>
@@ -25,45 +34,51 @@ const Game = () => {
             className={className}
             onClick={() => onCell(row, index)}
           >
-            {field.finishedGame ? (cell.bomb ? `💣` : cell.value) : cell.value}
+            {field.showBomb ? (cell.bomb ? `💣` : cell.value) : cell.value}
           </div>)
       })
     )
 
   const result = () => {
-    if (field.score === BOMB_QTY) {
+    if (field.score === field.bomb) {
       const congratulation = 'Поздравляю !!!'
       return <h2>{congratulation}</h2>;
     }
     return field.finishedGame ? <h2>{field.score}</h2> : null;
   }
 
+  const TopTen = () => {
+    if (field.bomb === field.score) {
+      return (<div>Тут будет Топ 10 результатов</div>)
+    }
+  }
+
   return (
     <div>
       <div className="container"
-        style={{ gridTemplateColumns: `repeat(${FIELD_SIZE}, 1fr)` }}
+        style={{ gridTemplateColumns: `repeat(${field.size}, 1fr)` }}
       >
         {cells}
         <div
           className="button"
-          onClick={onHandlerButton}
+          onClick={onCheckButton}
         >
           Проверить
-      </div>
+        </div>
         {result()}
-        {/* <div className="clean"
-          onClick={onClean}
-        >
-          Начать заново
-      </div> */}
-        <div className="clean"
-          onClick={onNew}
-        >
-          Новая игра
-      </div>
+        {
+          field.finishedGame ? null : <div className="clean"
+            onClick={onCleanButton}
+          >
+            Сбросить
+          </div>
+        }
 
       </div>
-      <div className="timer"> <Timer /></div>
+      <div className="timer">
+        {field.finishedGame ? transformSeconds(field.time) : <Timer />}
+      </div>
+      {TopTen()}
     </div>
   );
 }

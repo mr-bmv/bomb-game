@@ -14,23 +14,18 @@ export const UserProvider = ({ children }) => {
         time: ''
     })
 
-    // const onHandlerButton = () => {
-    //     setField(
-    //         {
-    //             ...field,
-    //             ...{ finishedGame: true }
-    //         }
-    //     )
-    // }
-
     const setLogin = (login) => {
         setUser({ ...user, ...{ login } })
     }
 
+    const onExit = () => {
+        setUser({ ...user, ...{ login: '' } })
+    }
     return (
         <UserContext.Provider value={{
             user,
-            setLogin
+            setLogin,
+            onExit,
         }}>
             {children}
         </UserContext.Provider>

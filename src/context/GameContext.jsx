@@ -10,23 +10,21 @@ export const useGameContext = () => {
 
 export const GameProvider = ({ children }) => {
 
-  const BOMB_QTY = 1
-  const FIELD_SIZE = 10
-
-  // let state = useMemo(() => {
-  //     return { canvas: getCanvas(BOMB_QTY, FIELD_SIZE), finishedGame: false, score: 0 }
-  // }, [BOMB_QTY, FIELD_SIZE])
-
   const [field, setField] = useState(() => {
     return {
-      canvas: getCanvas(BOMB_QTY, FIELD_SIZE),
+      canvas: '',
+      cleanCanvas: '',
       finishedGame: false,
+      bomb: '',
+      size: '',
       score: 0,
+      showBomb: false,
+      time: ''
     }
   })
 
   const onCell = (row, column) => {
-    if (!field.finishedGame && (field.score !== 40)) {
+    if (!field.finishedGame && (field.score !== field.bomb)) {
       const before = field.canvas[row].slice(0, column);
       const my = {
         ...field.canvas[row][column],
@@ -57,34 +55,48 @@ export const GameProvider = ({ children }) => {
     }
   }
 
-  const onHandlerButton = () => {
+  const onCheckButton = () => {
     setField(
       {
         ...field,
-        ...{ finishedGame: true }
+        ...{ finishedGame: true, showBomb: true }
       }
     )
   }
 
-  // const onClean = () => {
-  //   const { canvas, finishedGame, score } = state;
-  //   setField({ canvas, finishedGame, score })
-  // }
-
-  const onNew = () => {
-    const canvas = getCanvas(BOMB_QTY, FIELD_SIZE);
+  const onCleanButton = () => {
     setField({
-      canvas, finishedGame: false, score: 0
+      ...field,
+      ...{
+        canvas: field.cleanCanvas,
+        score: 0,
+      }
     })
+  }
+
+  const onNew = (bomb, size) => {
+    const canvas = getCanvas(bomb, size);
+    setField({
+      canvas, cleanCanvas: canvas, finishedGame: false, score: 0, bomb, size
+    })
+  }
+
+  const finishGame = () => {
+    setField({ ...field, ...{ finishedGame: true } })
+  }
+
+  const getTime = (seconds) => {
+    setField({ ...field, ...{ time: seconds } })
   }
 
   return (
     <GameContext.Provider value={{
-      field, FIELD_SIZE, BOMB_QTY,
-      onCell, onHandlerButton,
-      // onClean, 
-      onNew
-
+      field,
+      onCell, onCheckButton,
+      onCleanButton,
+      onNew,
+      finishGame,
+      getTime
     }}>
       {children}
     </GameContext.Provider>
