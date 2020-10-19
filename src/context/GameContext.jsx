@@ -77,7 +77,7 @@ export const GameProvider = ({ children }) => {
   const onNew = (bomb, size) => {
     const canvas = getCanvas(bomb, size);
     setField({
-      canvas, cleanCanvas: canvas, finishedGame: false, score: 0, bomb, size
+      canvas, cleanCanvas: canvas, finishedGame: false, score: 0, bomb, size, time: 0
     })
   }
 
