@@ -5,7 +5,7 @@ import transformSeconds from '../helpFunction/transformSeconds';
 const Timer = () => {
     const [seconds, setSeconds] = useState(0)
 
-    const { getTime } = useGameContext();
+    const { field, getTime } = useGameContext();
 
     const tick = () => {
         setSeconds((seconds) => seconds + 1)
@@ -13,7 +13,12 @@ const Timer = () => {
 
     useEffect(() => {
         getTime(seconds)
+        setSeconds(0)
         // eslint-disable-next-line
+    }, [field.cleanCanvas])
+
+    useEffect(() => {
+        getTime(seconds)
     }, [seconds])
 
     useEffect(() => {
@@ -23,7 +28,7 @@ const Timer = () => {
 
 
     return (
-        <div>{`Время ${transformSeconds(seconds)}`}</div>
+        <>{`Время ${transformSeconds(seconds)}`}</>
     )
 }
 
