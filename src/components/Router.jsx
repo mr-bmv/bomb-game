@@ -7,11 +7,13 @@ import UserProvider from '../context/UserContext';
 import About from './Pages/About';
 
 // Components
-import Navbar from './Navbar';
 import NewGame from './Pages/NewGame';
 import Rules from './Pages/Rules';
 import NotFound from './Pages/NotFound';
 import Auth from './Pages/Auth/Auth';
+import Navbar from './Navbar/Navbar';
+
+import './Router.css'
 
 
 const Router = () => (

@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useGameContext } from '../context/GameContext';
 import transformSeconds from '../helpFunction/transformSeconds';
 
-import "./Game.css"
+// import "./Game.css"
 import Timer from './Timer';
 
 const Game = () => {
