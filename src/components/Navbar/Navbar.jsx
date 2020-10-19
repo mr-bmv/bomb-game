@@ -9,47 +9,27 @@ import {
   NavBtnLink
 } from './NavbarElements';
 
-const Navbar = () => {
+const Navbar = ({ toggle }) => {
   const { user } = useUserContext()
 
   const text = user.login || 'Войти'
 
   return (
-    // <>
-    //   <Nav>
-    //     <div>
-    //       {`Bomb 💣`}
-    //     </div>
-    //     <ul >
-    //       <li >
-    //         <NavLink exact to="/">Правила</NavLink>
-    //       </li>
-    //       <li >
-    //         <NavLink exact to="/new_game">Новая Игра</NavLink>
-    //       </li>
-    //       <li >
-    //         <NavLink exact to="/about">Обо мне</NavLink>
-    //       </li>
-    //       <li >
-    //         <NavLink exact to="/login">{text}</NavLink>
-    //       </li>
-    //     </ul>
-    //   </Nav>
-    // </>
     <>
       <Nav>
         <NavLink to='/'>
-        {/* <img src={require('../../images/logo.svg')} alt='logo' /> */}
+          {/* <img src={require('../../images/logo.svg')} alt='logo' /> */}
         Bomb
       </NavLink>
-        <Bars />
+        <Bars onClick={toggle} />
         <NavMenu>
-          <NavLink to='/' activeStyle>
-            Правила
-        </NavLink>
           <NavLink to='/new_game' activeStyle>
             Новая Игра
         </NavLink>
+          <NavLink to='/' activeStyle>
+            Правила
+        </NavLink>
+
           <NavLink to='/about' activeStyle>
             Обо мне
         </NavLink>

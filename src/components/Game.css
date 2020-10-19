@@ -1,12 +1,23 @@
 .container {
   display: grid;
-  /* grid-template-columns: repeat(10, 1fr); */
-  width: 600px;
   user-select: none;
 }
 
+/* Each item in our grid will contain numbers */
+.cell {
+  /* We center the contents of these items. You can also do this with flexbox too! */
+  display: grid;
+  width: 35px;
+  height: 35px;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  font-size: 25px;
+}
+
 .cell.marked {
-  background-color: rgb(91, 199, 64);
+  background-color: #73a839;
 }
 
 .cell.bomb {
@@ -24,15 +35,6 @@
   grid-column: 1 / span 2;
 }
 
-h2 {
-  background-color: rgb(91, 199, 64);
-  height: 35px;
-  border-radius: 5px;
-  border: 2px solid darkcyan;
-  /* grid-column: 4/8; */
-  text-align: center;
-}
-
 .clean {
   margin-top: 1rem;
   height: 35px;
@@ -44,3 +46,6 @@ h2 {
   grid-column: span 2/-1;
 }
 
+.timer {
+  margin-bottom: 10px;
+}

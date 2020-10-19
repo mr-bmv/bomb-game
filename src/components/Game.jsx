@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useGameContext } from '../context/GameContext';
 import transformSeconds from '../helpFunction/transformSeconds';
 
-// import "./Game.css"
+import "./Game.css"
 import Timer from './Timer';
 
 const Game = () => {
@@ -50,35 +50,36 @@ const Game = () => {
 
   const TopTen = () => {
     if (field.bomb === field.score) {
-      return (<div>Тут будет Топ 10 результатов</div>)
+      return (<div>Тут будет Топ 10</div>)
     }
   }
 
   return (
     <div>
-      <div className="container"
+      <div className="timer">
+        {field.finishedGame ? `Время ${transformSeconds(field.time)}`
+          : <Timer />}
+      </div>
+      <div
+        className="container"
         style={{ gridTemplateColumns: `repeat(${field.size}, 1fr)` }}
       >
         {cells}
-        <div
-          className="button"
-          onClick={onCheckButton}
-        >
-          Проверить
+      </div>
+      <div
+        className="button"
+        onClick={onCheckButton}
+      >
+        Проверить
         </div>
-        {result()}
-        {
-          field.finishedGame ? null : <div className="clean"
-            onClick={onCleanButton}
-          >
-            Сбросить
+      {/* {result()} */}
+      {
+        field.finishedGame ? null : <div className="clean"
+          onClick={onCleanButton}
+        >
+          Заново
           </div>
-        }
-
-      </div>
-      <div className="timer">
-        {field.finishedGame ? transformSeconds(field.time) : <Timer />}
-      </div>
+      }
       {TopTen()}
     </div>
   );
