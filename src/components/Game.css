@@ -49,7 +49,7 @@
 }
 
 .game-over {
-  margin: 1rem;
+  margin: 1rem 0.3rem;
   color: #73a839;
   font-weight: 700;
 }

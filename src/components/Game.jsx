@@ -42,10 +42,10 @@ const Game = () => {
 
   const result = () => {
     if (field.score === field.bomb) {
-      const congratulation = 'Поздравляю !!!'
-      return <h2>{congratulation}</h2>;
+      return <div className="game-over">Все бомбы найдены</div>
+      // return <h2>{congratulation}</h2>;
     }
-    return field.finishedGame ? <h2>{field.score}</h2> : null;
+    // return field.finishedGame ? <h2>{field.score}</h2> : null;
   }
 
   const TopTen = () => {
@@ -68,21 +68,19 @@ const Game = () => {
       </div>
 
       {
-        field.finishedGame ? null :
+        field.finishedGame ? result() :
           <div
             className="button"
             onClick={onCheckButton}
           >
             Проверить
         </div>}
-      {/* {result()} */}
 
       {
         field.finishedGame ?
           (<div className="game-over">Игра окончена!
-            <p>&nbsp;</p>
             <p>Для начала игры </p>
-            <p>выбири уровень </p>
+            <p>выбери уровень </p>
             <p>сложности</p></div>
           )
           : <div className="button"
