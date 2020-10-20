@@ -17,20 +17,19 @@ const Navbar = ({ toggle }) => {
   return (
     <>
       <Nav>
-        <NavLink to='/'>
-          {/* <img src={require('../../images/logo.svg')} alt='logo' /> */}
-        Bomb
-      </NavLink>
+        {/* <NavLink to='/'> */}
+          <img src={require('../../img/logo60.png')} alt='logo' />
+        {/* </NavLink> */}
         <Bars onClick={toggle} />
         <NavMenu>
-          <NavLink to='/new_game' activeStyle>
+          <NavLink to='/new_game' >
             Новая Игра
         </NavLink>
-          <NavLink to='/' activeStyle>
+          <NavLink to='/rules' >
             Правила
         </NavLink>
 
-          <NavLink to='/about' activeStyle>
+          <NavLink to='/about' >
             Обо мне
         </NavLink>
           {/* Second Nav */}
