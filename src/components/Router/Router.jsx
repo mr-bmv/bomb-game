@@ -2,19 +2,21 @@ import React, { useState } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 // Context
-import GameProvider from '../context/GameContext';
-import UserProvider from '../context/UserContext';
-import About from './Pages/About/About';
+import UserProvider from '../../context/UserContext';
+import GameProvider from '../../context/GameContext';
+
 
 // Components
-import NewGame from './Pages/NewGame/NewGame';
-import Rules from './Pages/Rules/Rules';
-import NotFound from './Pages/NotFound/NotFound';
-import Auth from './Pages/Auth/Auth';
-import Navbar from './Navbar/Navbar';
-import Sidebar from './Sidebar/Sidebar';
+import NewGame from '../Pages/NewGame/NewGame';
+import Rules from '../Pages/Rules/Rules';
+import NotFound from '../Pages/NotFound/NotFound';
+import Auth from '../Pages/Auth/Auth';
+import Navbar from '../Navbar/Navbar';
+import Sidebar from '../Sidebar/Sidebar';
+import About from '../Pages/About/About';
 
 import './Router.css'
+
 
 
 

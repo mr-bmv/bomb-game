@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { useGameContext } from '../context/GameContext';
-import transformSeconds from '../helpFunction/transformSeconds';
+import { useGameContext } from '../../context/GameContext';
+import transformSeconds from '../../helpFunction/transformSeconds';
 
 const Timer = () => {
     const [seconds, setSeconds] = useState(0)

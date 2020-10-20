@@ -4,7 +4,7 @@ import { useGameContext } from '../../context/GameContext';
 import transformSeconds from '../../helpFunction/transformSeconds';
 
 import "./Game.css"
-import Timer from '../Timer';
+import Timer from '../Timer/Timer';
 
 const Game = () => {
 
