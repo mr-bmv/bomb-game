@@ -19,11 +19,13 @@ const Timer = () => {
 
     useEffect(() => {
         getTime(seconds)
+        // eslint-disable-next-line
     }, [seconds])
 
     useEffect(() => {
         const interval = setInterval(() => tick(), 1000);
         return () => clearInterval(interval);
+        // eslint-disable-next-line
     }, []);
 
 
