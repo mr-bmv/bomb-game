@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 // Context
 import GameProvider from '../context/GameContext';
 import UserProvider from '../context/UserContext';
-import About from './Pages/About';
+import About from './Pages/About/About';
 
 // Components
 import NewGame from './Pages/NewGame';
@@ -33,6 +33,7 @@ const Router = () => {
                     <Sidebar isOpen={isOpen} toggle={toggle} />
                     <Navbar toggle={toggle} />
                     <Switch>
+                        <Route exact path='/' component={NewGame} />
                         <Route path='/rules' component={Rules} />
                         <Route path='/new_game' component={NewGame} />
                         <Route path='/about' component={About} />
