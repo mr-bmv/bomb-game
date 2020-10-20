@@ -7,9 +7,9 @@ import UserProvider from '../context/UserContext';
 import About from './Pages/About/About';
 
 // Components
-import NewGame from './Pages/NewGame';
+import NewGame from './Pages/NewGame/NewGame';
 import Rules from './Pages/Rules/Rules';
-import NotFound from './Pages/NotFound';
+import NotFound from './Pages/NotFound/NotFound';
 import Auth from './Pages/Auth/Auth';
 import Navbar from './Navbar/Navbar';
 import Sidebar from './Sidebar/Sidebar';
