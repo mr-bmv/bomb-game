@@ -1,10 +1,10 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { useGameContext } from '../context/GameContext';
-import transformSeconds from '../helpFunction/transformSeconds';
+import { useGameContext } from '../../context/GameContext';
+import transformSeconds from '../../helpFunction/transformSeconds';
 
 import "./Game.css"
-import Timer from './Timer';
+import Timer from '../Timer';
 
 const Game = () => {
 
