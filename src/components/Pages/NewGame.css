@@ -35,6 +35,10 @@ h2 {
   border-radius: 0.25rem;
 }
 
+.level:hover {
+  opacity: 0.7;
+}
+
 .level-wrapper {
   display: box;
   display: flex;
