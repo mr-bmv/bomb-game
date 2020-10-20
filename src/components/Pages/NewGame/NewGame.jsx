@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { useGameContext } from '../../context/GameContext';
-import { useUserContext } from '../../context/UserContext';
-import Game from '../Game';
+import { useGameContext } from '../../../context/GameContext';
+import { useUserContext } from '../../../context/UserContext';
+import Game from '../../Game';
 
 import './NewGame.css'
 
