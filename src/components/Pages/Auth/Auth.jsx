@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useUserContext } from '../../../context/UserContext';
-// import './Auth.css'
+import './Auth.css'
 
 const Auth = () => {
 
@@ -19,22 +19,22 @@ const Auth = () => {
 
   const content = user.login
     ?
-    (<div>
-      <div>{`Вы вошли как ${user.login}`}</div>
+    (<div className="hello">
+      <div className="text">Вы вошли как - <span>{user.login}</span></div>
       <div
-        className="button"
+        className="exit"
         onClick={onExit}>Выйти</div>
     </div>
     )
     :
     (<form onSubmit={goToGame}>
-      <div className="text">Введите ник</div>&nbsp;
+      <div className="text">Введите ник</div>
       <input type="text" onChange={(login) => onChange(login)} />
     </form>
     );
 
   return (
-    <div>{content}</div>
+    <div className='wrapper'>{content}</div>
 
   )
 }
