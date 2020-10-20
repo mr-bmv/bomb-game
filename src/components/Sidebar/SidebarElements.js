@@ -8,7 +8,7 @@ position: fixed;
 z-index: 999;
 width: 100%;
 height: 100%;
-background: #0d0d0d;
+background: #3e3f3a;
 display: grid;
 align-items: center;
 top: 0;
@@ -59,7 +59,7 @@ color: #fff;
 cursor: pointer;
 
 &:hover{
-    color: #01bf71;
+    color: #73a839;
     transition: 0.2s ease-in-out;
 }
 `
@@ -71,7 +71,7 @@ justify-content: center
 
 export const SidebarRouter = styled(LinkR)`
 border-radius: 50px;
-background:#01bf71;
+background:#73a839;
 white-space: nowrap;
 padding: 16px 64px;
 color: #010606;
@@ -86,5 +86,22 @@ text-decoration: none;
     transition: all 0.2s ease-in-out;
     background: #fff;
     color: #010606;
+}
+`
+
+export const MySidebarLink = styled(LinkR)`
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.5rem;
+text-decoration: none;
+list-style: none;
+transition: 0.2s ease-in-out;
+color: #fff;
+cursor: pointer;
+
+&:hover{
+    color: #73a839;
+    transition: 0.2s ease-in-out;
 }
 `

@@ -74,7 +74,7 @@ const Game = () => {
         </div>
       {/* {result()} */}
       {
-        field.finishedGame ? null : <div className="clean"
+        field.finishedGame ? null : <div className="button"
           onClick={onCleanButton}
         >
           Заново

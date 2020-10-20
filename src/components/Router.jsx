@@ -33,7 +33,7 @@ const Router = () => {
                     <Sidebar isOpen={isOpen} toggle={toggle} />
                     <Navbar toggle={toggle} />
                     <Switch>
-                        <Route exact path='/' component={Rules} />
+                        <Route path='/rules' component={Rules} />
                         <Route path='/new_game' component={NewGame} />
                         <Route path='/about' component={About} />
                         <Route path='/login' component={Auth} />
