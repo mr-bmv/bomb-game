@@ -74,7 +74,8 @@ border-radius: 50px;
 background:#73a839;
 white-space: nowrap;
 padding: 16px 64px;
-color: #010606;
+color: #3e3f3a;
+font-weight: bold;
 font-size: 16px;
 outline: none;
 border: none;
@@ -84,7 +85,7 @@ text-decoration: none;
 
 &:hover{
     transition: all 0.2s ease-in-out;
-    background: #fff;
+    background: #c7e1a1;
     color: #010606;
 }
 `
