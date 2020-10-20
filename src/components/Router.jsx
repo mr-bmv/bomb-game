@@ -8,7 +8,7 @@ import About from './Pages/About/About';
 
 // Components
 import NewGame from './Pages/NewGame';
-import Rules from './Pages/Rules';
+import Rules from './Pages/Rules/Rules';
 import NotFound from './Pages/NotFound';
 import Auth from './Pages/Auth/Auth';
 import Navbar from './Navbar/Navbar';
