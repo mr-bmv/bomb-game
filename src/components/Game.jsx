@@ -66,20 +66,32 @@ const Game = () => {
       >
         {cells}
       </div>
-      <div
-        className="button"
-        onClick={onCheckButton}
-      >
-        Проверить
-        </div>
-      {/* {result()} */}
+
       {
-        field.finishedGame ? null : <div className="button"
-          onClick={onCleanButton}
-        >
-          Заново
+        field.finishedGame ? null :
+          <div
+            className="button"
+            onClick={onCheckButton}
+          >
+            Проверить
+        </div>}
+      {/* {result()} */}
+
+      {
+        field.finishedGame ?
+          (<div className="game-over">Игра окончена!
+            <p>&nbsp;</p>
+            <p>Для начала игры </p>
+            <p>выбири уровень </p>
+            <p>сложности</p></div>
+          )
+          : <div className="button"
+            onClick={onCleanButton}
+          >
+            Заново
           </div>
       }
+
       {TopTen()}
     </div>
   );

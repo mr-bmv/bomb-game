@@ -47,3 +47,9 @@
 .timer {
   margin-bottom: 10px;
 }
+
+.game-over {
+  margin: 1rem;
+  color: #73a839;
+  font-weight: 700;
+}
