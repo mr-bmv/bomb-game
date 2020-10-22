@@ -1,5 +1,6 @@
 import React, { useReducer } from 'react';
 import { useContext } from 'react';
+import changeCell from '../helpFunction/changeCell';
 import getCanvas from '../helpFunction/getCanvas';
 import { CHECK_GAME, NEW_GAME, ON_CELL, CLEAN_FIELD, FINISH_GAME, GET_TIME } from '../reducer/actionTypes';
 import { GameReducer } from '../reducer/GameReducer';
@@ -27,27 +28,7 @@ export const GameProvider = ({ children }) => {
 
   const onCell = (row, column) => {
     if (!field.finishedGame && (field.score !== field.bomb)) {
-      const before = field.canvas[row].slice(0, column);
-      const my = {
-        ...field.canvas[row][column],
-        // circle from 0 till 2
-        status: (field.canvas[row][column].status === 2 ? 0 : field.canvas[row][column].status + 1)
-      }
-      const after = field.canvas[row].slice(column + 1)
-
-      let newScore = field.score;
-      if (my.status === 2) {
-        newScore = field.canvas[row][column].bomb ? (field.score + 1) : field.score
-      }
-      if (my.status === 0) {
-        newScore = field.canvas[row][column].bomb ? (field.score - 1) : field.score
-      }
-
-      const { canvas } = field;
-      const updateCanvas = {
-        ...canvas,
-        [row]: [...before, my, ...after],
-      }
+      const { updateCanvas, newScore } = changeCell(row, column, field);
       dispatch({ type: ON_CELL, payload: { updateCanvas, newScore } })
     }
   }
