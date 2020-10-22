@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
 import { useContext } from 'react';
 import getCanvas from '../helpFunction/getCanvas';
+import { CHECK_GAME, NEW_GAME, ON_CELL, CLEAN_FIELD, FINISH_GAME, GET_TIME } from '../reducer/actionTypes';
+import { GameReducer } from '../reducer/GameReducer';
 
 const GameContext = React.createContext()
 
@@ -10,18 +12,18 @@ export const useGameContext = () => {
 
 export const GameProvider = ({ children }) => {
 
-  const [field, setField] = useState(() => {
-    return {
-      canvas: '',
-      cleanCanvas: '',
-      finishedGame: false,
-      bomb: '',
-      size: '',
-      score: 0,
-      showBomb: false,
-      time: ''
-    }
-  })
+  const initialState = {
+    canvas: '',
+    cleanCanvas: '',
+    finishedGame: false,
+    bomb: '',
+    size: '',
+    score: 0,
+    showBomb: false,
+    time: ''
+  }
+
+  const [field, dispatch] = useReducer(GameReducer, initialState);
 
   const onCell = (row, column) => {
     if (!field.finishedGame && (field.score !== field.bomb)) {
@@ -46,53 +48,36 @@ export const GameProvider = ({ children }) => {
         ...canvas,
         [row]: [...before, my, ...after],
       }
-
-      setField({
-        ...field,
-        ...{ canvas: updateCanvas },
-        ...{ score: newScore },
-      })
+      dispatch({ type: ON_CELL, payload: { updateCanvas, newScore } })
     }
   }
 
   const onCheckButton = () => {
-    setField(
-      {
-        ...field,
-        ...{ finishedGame: true, showBomb: true }
-      }
-    )
+    dispatch({ type: CHECK_GAME })
   }
 
   const onCleanButton = () => {
-    setField({
-      ...field,
-      ...{
-        canvas: field.cleanCanvas,
-        score: 0,
-      }
-    })
+    dispatch({ type: CLEAN_FIELD })
   }
 
   const onNew = (bomb, size) => {
     const canvas = getCanvas(bomb, size);
-    setField({
-      canvas, cleanCanvas: canvas, finishedGame: false, score: 0, bomb, size, time: 0
-    })
+    dispatch({ type: NEW_GAME, payload: { canvas, bomb, size } })
   }
 
   const finishGame = () => {
-    setField({ ...field, ...{ finishedGame: true } })
+    dispatch({ type: FINISH_GAME })
   }
 
   const getTime = (seconds) => {
-    setField({ ...field, ...{ time: seconds } })
+    dispatch({ type: GET_TIME, payload: seconds })
   }
 
   return (
     <GameContext.Provider value={{
       field,
-      onCell, onCheckButton,
+      onCell,
+      onCheckButton,
       onCleanButton,
       onNew,
       finishGame,
