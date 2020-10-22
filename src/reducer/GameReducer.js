@@ -6,7 +6,8 @@ const handlers = {
     [ON_CELL]: (state, action) => ({ ...state, ...{ canvas: action.payload.updateCanvas }, ...{ score: action.payload.newScore } }),
     [CLEAN_FIELD]: state => ({ ...state, ...{ canvas: state.cleanCanvas, score: 0 } }),
     [FINISH_GAME]: state => ({ ...state, ...{ finishedGame: true } }),
-    [GET_TIME]: (state, action) => ({ ...state, ...{ time: action.payload } })
+    [GET_TIME]: (state, action) => ({ ...state, ...{ time: action.payload } }),
+    DEFAULT: state => state
 }
 
 export const GameReducer = (state, action) => {
