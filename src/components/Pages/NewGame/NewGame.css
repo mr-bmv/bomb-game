@@ -40,7 +40,6 @@ h2 {
 }
 
 .level-wrapper {
-  display: box;
   display: flex;
   grid-gap: 20px;
   grid-template-columns: repeat(auto-fit, 100px);
