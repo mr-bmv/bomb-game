@@ -7,8 +7,6 @@ export const useModalContext = () => {
 }
 
 const ModalProvider = ({ children }) => {
-
-
     const [showModal, setShowModal] = useState(true);
 
     const toggleModal = () => {

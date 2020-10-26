@@ -1,14 +1,20 @@
 import React from 'react';
 import { useEffect } from 'react';
+
+// contexts
 import { useGameContext } from '../../context/GameContext';
 import { useModalContext } from '../../context/ModalContext';
+
+// help function
 import transformSeconds from '../../helpFunction/transformSeconds';
 
+// style
 import "./Game.css"
+
+// components
 import Timer from '../Timer/Timer';
 
 const Game = () => {
-
   const { field, onCell, onCheckButton, onCleanButton, finishGame } = useGameContext();
   const { resetModal } = useModalContext();
   // watching for all bombs would be found and game could be finished
@@ -19,8 +25,8 @@ const Game = () => {
     // eslint-disable-next-line
   }, [field.score])
 
+  // need to reset modal from 'false' to 'true' when new game started
   useEffect(() => {
-    console.log('resetModal')
     resetModal();
     // eslint-disable-next-line
   }, [field.cleanCanvas])
@@ -47,25 +53,16 @@ const Game = () => {
       })
     )
 
-  const result = () => {
-    if (field.score === field.bomb) {
-      // toggleModal()
-      return <div className="game-over">Все бомбы найдены</div>
-      // return <h2>{congratulation}</h2>;
-    }
-    // return field.finishedGame ? <h2>{field.score}</h2> : null;
-  }
-
-  const TopTen = () => {
-    // if (field.bomb === field.score) {
-    //   return <Modal />
-    // }
+  const GamePlay = () => {
     return (
       <div>
+        {/* Timer could be run or stopped */}
         <div className="timer">
           {field.finishedGame ? `Время ${transformSeconds(field.time)}`
             : <Timer />}
         </div>
+
+        {/* main canvas for bomb field */}
         <div
           className="container"
           style={{ gridTemplateColumns: `repeat(${field.size}, 1fr)` }}
@@ -73,15 +70,21 @@ const Game = () => {
           {cells}
         </div>
 
+        {/* Check button could be shown during the game or toggle when game finished */}
         {
-          field.finishedGame ? result() :
+          !field.finishedGame
+            ?
             <div
               className="button"
               onClick={onCheckButton}
             >
               Проверить
-            </div>}
+            </div>
+            :
+            null}
 
+        {/* win message would be shown when user win  */}
+        {/* Clean button could be shown during game and hide when it finished */}
         {
           field.finishedGame ?
             (<div className="game-over">Игра окончена!
@@ -96,50 +99,12 @@ const Game = () => {
               </div>
         }
       </div>
-
     )
-
-  }
+  };
 
   return (
     <div>
-      {TopTen()}
-      {/* <Modal />
-      <div className="timer">
-        {field.finishedGame ? `Время ${transformSeconds(field.time)}`
-          : <Timer />}
-      </div>
-      <div
-        className="container"
-        style={{ gridTemplateColumns: `repeat(${field.size}, 1fr)` }}
-      >
-        {cells}
-      </div>
-
-      {
-        field.finishedGame ? result() :
-          <div
-            className="button"
-            onClick={onCheckButton}
-          >
-            Проверить
-        </div>}
-
-      {
-        field.finishedGame ?
-          (<div className="game-over">Игра окончена!
-            <p>Для начала игры </p>
-            <p>выбери уровень </p>
-            <p>сложности</p></div>
-          )
-          : <div className="button"
-            onClick={onCleanButton}
-          >
-            Заново
-          </div>
-      }
- */}
-
+      {GamePlay()}
     </div>
   );
 }

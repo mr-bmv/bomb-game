@@ -17,9 +17,7 @@ const Navbar = ({ toggle }) => {
   return (
     <>
       <Nav>
-        {/* <NavLink to='/'> */}
-          <img src={require('../../img/logo60.png')} alt='logo' />
-        {/* </NavLink> */}
+        <img src={require('../../img/logo60.png')} alt='logo' />
         <Bars onClick={toggle} />
         <NavMenu>
           <NavLink to='/new_game' >
@@ -28,12 +26,9 @@ const Navbar = ({ toggle }) => {
           <NavLink to='/rules' >
             Правила
         </NavLink>
-
           <NavLink to='/about' >
             Обо мне
         </NavLink>
-          {/* Second Nav */}
-          {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
         </NavMenu>
         <NavBtn>
           <NavBtnLink to='/login'>{text}</NavBtnLink>

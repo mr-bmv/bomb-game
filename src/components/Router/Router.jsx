@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 // Context
 import UserProvider from '../../context/UserContext';
-import GameProvider, { useGameContext } from '../../context/GameContext';
+import GameProvider from '../../context/GameContext';
 import ModalProvider from '../../context/ModalContext';
 
 
@@ -21,33 +21,33 @@ import Modal from '../Modal/Modal';
 
 const Router = () => {
 
-    const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
 
-    const toggle = () => {
-        setIsOpen(!isOpen)
-    };
+  const toggle = () => {
+    setIsOpen(!isOpen)
+  };
 
-    return (
-        <ModalProvider >
-            <UserProvider>
-                <GameProvider>
-                    <BrowserRouter>
-                        <Modal />
-                        <Sidebar isOpen={isOpen} toggle={toggle} />
-                        <Navbar toggle={toggle} />
-                        <Switch>
-                            <Route exact path='/' component={NewGame} />
-                            <Route path='/rules' component={Rules} />
-                            <Route path='/new_game' component={NewGame} />
-                            <Route path='/about' component={About} />
-                            <Route path='/login' component={Auth} />
-                            <Route component={NotFound} />
-                        </Switch>
-                    </BrowserRouter>
-                </GameProvider>
-            </UserProvider>
-        </ModalProvider>
-    )
+  return (
+    <ModalProvider >
+      <UserProvider>
+        <GameProvider>
+          <BrowserRouter>
+            <Modal />
+            <Sidebar isOpen={isOpen} toggle={toggle} />
+            <Navbar toggle={toggle} />
+            <Switch>
+              <Route exact path='/' component={NewGame} />
+              <Route path='/rules' component={Rules} />
+              <Route path='/new_game' component={NewGame} />
+              <Route path='/about' component={About} />
+              <Route path='/login' component={Auth} />
+              <Route component={NotFound} />
+            </Switch>
+          </BrowserRouter>
+        </GameProvider>
+      </UserProvider>
+    </ModalProvider>
+  )
 }
 
 export default Router;
