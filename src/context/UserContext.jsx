@@ -11,7 +11,6 @@ export const UserProvider = ({ children }) => {
 
     const [user, setUser] = useState({
         login: '',
-        time: ''
     })
 
     const setLogin = (login) => {

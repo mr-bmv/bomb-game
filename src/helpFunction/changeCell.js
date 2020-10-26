@@ -29,7 +29,6 @@ const changeCell = (row, column, field) => {
         [row]: [...before, my, ...after],
     }
 
-    console.log(updateCanvas, newScore)
     return { updateCanvas, newScore };
 
 }

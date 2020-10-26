@@ -22,6 +22,7 @@ h2 {
   border-color: #73a839;
   display: grid;
   grid-template-columns: repeat(4, auto);
+
   /* padding: 3px 5px; */
   /* border-radius: 5px; */
   cursor: pointer;

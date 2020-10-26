@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { useGameContext } from '../../../context/GameContext';
 import { useUserContext } from '../../../context/UserContext';
 import Game from '../../Game/Game';
@@ -6,16 +6,14 @@ import Game from '../../Game/Game';
 import './NewGame.css'
 
 const NewGame = () => {
-
   const [level, setLevel] = useState('')
-
   const { onNew } = useGameContext();
   const { user } = useUserContext();
 
   const startGame = (qty, size) => {
     onNew(qty, size)
     setLevel({ level: 'beginner' })
-  }
+  };
 
   return (
     <div className='new-game'>
