@@ -19,6 +19,7 @@ export const ModalWrapper = styled.div`
   position: relative;
   z-index: 10;
   border-radius: 10px;
+  justify-items: center;
 `;
 
 export const ModalContent = styled.div`
