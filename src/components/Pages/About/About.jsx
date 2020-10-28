@@ -12,7 +12,7 @@ const About = () => {
                 <div className="about-wrapper" style={props}>
                     <h2>Обо мне</h2>
                     <div className="card">
-                        <img src={require('./photo.jpg')} alt="mike" />
+                        <img className="my-photo" src={require('./photo.jpg')} alt="mike" />
                         <div>
                             <p>Меня зовут <span style={{ color: '#73a839' }}>Михаил Боткин</span></p>
                             <p>Я работал как <span style={{ color: '#73a839' }}>Software Developer </span>три года и теперь решил попробовать себя в Web разработке.</p>
