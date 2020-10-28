@@ -2,6 +2,9 @@
   margin: 2rem auto;
   max-width: 600px;
   color: #3e3f3a;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  grid-gap: 20px;
 }
 
 .card {
@@ -9,5 +12,16 @@
   padding: 1rem;
   background-color: #3e3f3a;
   color: whitesmoke;
+  border-radius: 7px;
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  grid-gap: 10px;
+  align-items: center;
+  font-weight: 100;
+}
+
+img {
+  width: 110px;
+  height: 100%;
   border-radius: 7px;
 }
